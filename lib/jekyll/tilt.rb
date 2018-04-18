@@ -4,14 +4,14 @@
 
 require "jekyll"
 require "pathutil"
+require "jekyll/tilt/processor"
+require "jekyll/tilt/include_patch"
+require "jekyll/tilt/version"
 require "tilt"
 
 module Jekyll
   module Tilt
     Upstream = ::Tilt
-    autoload :Converters, "jekyll/tilt/converters"
-    autoload :VERSION,
-      "jekyll/tilt/version"
 
     # --
     # Register a hook
@@ -30,12 +30,9 @@ module Jekyll
     # --
     def self.convert_l!(site)
       site.layouts.each_value do |v|
-        parser = get_parser_for(v.ext)
-
-        next if parser == :next
-        v.content = parser.new do
-          v.content
-        end.render
+        v.content = Processor.run_for(v.content, {
+          ext: v.ext,
+        })
       end
     end
 
@@ -45,31 +42,12 @@ module Jekyll
     # --
     def self.convert_p!(site)
       site.pages.each do |v|
-        parser = get_parser_for(v.ext)
-
-        next if parser == :next
-        v.content = parser.new ugly: false, format: :html5 do
-          v.content
-        end.render
-      end
-    end
-
-    # --
-    # Get the parser for an extension.
-    # @return [Upstream::*]
-    # --
-    def self.get_parser_for(ext)
-      case ext
-      when ".haml" then Upstream::HamlTemplate
-      when ".erubis" then Upstream::ErubisTemplate
-      when ".sigil" then Upstream::SigilTemplate
-      when ".erb" then Upstream::ERBTemplate
-      else
-        :next
+        v.content = Processor.run_for(v.content, {
+          ext: v.ext,
+        })
       end
     end
 
     setup!
-    Converters.setup!
   end
 end
