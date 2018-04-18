@@ -1,50 +1,50 @@
+# --
+# OS Level
+# --
+.DS_Store
+
+# --
+# Ruby
+# --
+vendor/
+coverage/
+Gemfile.lock
+spec/fixture/site/
+spec/fixture/result/
+spec/fixture/out/
+.bundle/
 *.gem
-*.rbc
-/.config
-/coverage/
-/InstalledFiles
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
 
-# Used by dotenv library to load environment variables.
-# .env
+# --
+# CodeClimate
+# --
+cctr
 
-## Specific to RubyMotion:
-.dat*
-.repl_history
-build/
-*.bridgesupport
-build-iPhoneOS/
-build-iPhoneSimulator/
+# --
+# Jekyll
+# --
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.asset-cache/
+site/
 
-## Specific to RubyMotion (use of CocoaPods):
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# vendor/Pods/
+# --
+# Rails
+# --
+/db/*.sqlite3
+/npm-error.log
+.byebug_history
+/db/*.sqlite3-journal
+/config/application.yml
+/config/master.key
+/yarn-error.log
+/node_modules
+.pry_history
+/log
+/tmp
 
-## Documentation cache and generated files:
-/.yardoc/
-/_yardoc/
-/doc/
-/rdoc/
-
-## Environment normalization:
-/.bundle/
-/vendor/bundle
-/lib/bundler/man/
-
-# for a library or gem, you might want to ignore these files since the code is
-# intended to run in multiple environments; otherwise, check them in:
-# Gemfile.lock
-# .ruby-version
-# .ruby-gemset
-
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
+# --
+# Yarn
+# --
+yarn.lock
