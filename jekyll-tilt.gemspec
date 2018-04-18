@@ -17,6 +17,14 @@ Gem::Specification.new do |s|
   s.license = "Apache-2.0"
   s.name = "jekyll-tilt"
 
+  s.add_development_dependency("rspec", "~> 3.0")
+  s.add_development_dependency("jekyll-assets", "~> 3.0")
+  s.add_development_dependency("luna-rspec-formatters", "~> 3.11")
+  s.add_development_dependency("simplecov", "~> 0.16")
+  s.add_development_dependency("nokogiri", "~> 1.8")
+  s.add_development_dependency("rubocop", "0.52")
+  s.add_runtime_dependency("pathutil", "~> 0.16")
   s.add_runtime_dependency("jekyll", "~> 3.5")
+  s.add_runtime_dependency("haml", "~> 5.0")
   s.add_runtime_dependency("tilt", "~> 2.0")
 end
