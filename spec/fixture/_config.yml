@@ -11,3 +11,6 @@ defaults:
   values:
     layout: default
     type: post
+collections:
+  hello:
+    output: true
