@@ -26,10 +26,10 @@ module Jekyll
       def self.for_ext(ext)
         ext = ext.gsub(%r!^\.!, "")
         k = const_set(:Converter, Class.new(Converter))
-        define_singleton_method(:matches) { |e| e == ext || e == ".#{ext}" }
-        k.define_method(:matches) { |e| e == ext || e == ".#{ext}" }
-        k.define_method(:output_ext) { |*| ".html" }
-        k.define_method(:convert) { |c| c }
+        send(:define_singleton_method, :matches) { |e| e == ext || e == ".#{ext}" }
+        k.send(:define_method, :matches) { |e| e == ext || e == ".#{ext}" }
+        k.send(:define_method, :output_ext) { |*| ".html" }
+        k.send(:define_method, :convert) { |c| c }
       end
 
       # --
