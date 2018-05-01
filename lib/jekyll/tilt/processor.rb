@@ -47,9 +47,11 @@ module Jekyll
       # @param out [String] the content to output
       # @return [String]
       # --
-      def self.run_for(out, ext:)
+      def self.run_for(out, ext:, var: {})
         find_for(ext).each do |v|
-          out = v.run_for(out)
+          out = v.run_for(out, {
+            **var,
+          })
         end
 
         out

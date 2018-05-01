@@ -5,6 +5,7 @@
 # Encoding: utf-8
 
 source "https://rubygems.org"
+ruby "~> 2.4"
 gemspec
 
 group :development do

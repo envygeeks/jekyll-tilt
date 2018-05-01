@@ -20,7 +20,9 @@ module Jekyll
     def self.setup!
       Jekyll::Hooks.register(:site, :pre_render) { |s, _| convert_l!(s) }
       Jekyll::Hooks.register [:documents, :pages], :pre_render do |d, _|
-        convert_d!(d)
+        convert_d!(d, {
+          site: d.site,
+        })
       end
     end
 
@@ -30,7 +32,9 @@ module Jekyll
     # --
     def self.convert_l!(site)
       site.layouts.each_value do |v|
-        convert_d!(v)
+        convert_d!(v, {
+          site: site,
+        })
       end
     end
 
@@ -38,9 +42,13 @@ module Jekyll
     # Convert pages
     # @return [nil]
     # --
-    def self.convert_d!(doc)
-      doc.content = Processor.run_for(doc.content, {
-        ext: doc.ext,
+    def self.convert_d!(page, site:)
+      page.content = Processor.run_for(page.content, {
+        ext: page.data["ext"] || page.ext,
+        var: {
+          page: page,
+          site: site,
+        },
       })
     end
 
