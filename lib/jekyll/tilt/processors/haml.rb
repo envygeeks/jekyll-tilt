@@ -8,9 +8,16 @@ module Jekyll
       class Haml < Processor
         for_ext "haml"
         def self.run_for(content, **vars)
-          opts = vars[:site].config["haml"] || {}
-          Upstream::HamlTemplate.new(opts) { content }
+          Upstream::HamlTemplate.new(opts(vars)) { content }
             .render(**vars)
+        end
+
+        # --
+        def self.opts(vars)
+          out = vars[:site].config["haml"] || {}
+          out.each_with_object({}) do |(k, v), h|
+            h[k.to_sym] = v
+          end
         end
       end
     end
