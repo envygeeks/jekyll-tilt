@@ -10,6 +10,9 @@ module Jekyll
         out = pth.read(file_read_opts(ctx))
         Tilt::Processor.run_for(out, {
           ext: pth.extname,
+          var: {
+            site: ctx.registers[:site],
+          },
         })
       end
     end

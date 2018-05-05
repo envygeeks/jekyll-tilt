@@ -8,7 +8,8 @@ module Jekyll
       class Haml < Processor
         for_ext "haml"
         def self.run_for(content, **vars)
-          Upstream::HamlTemplate.new { content }
+          opts = vars[:site].config["haml"] || {}
+          Upstream::HamlTemplate.new(opts) { content }
             .render(**vars)
         end
       end
