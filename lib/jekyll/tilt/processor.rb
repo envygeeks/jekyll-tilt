@@ -21,6 +21,7 @@ module Jekyll
       # --
       # Allows you to set an extension
       # @note We will create the Jekyll shims
+      # rubocop:disable Metrics/LineLength
       # @return [nil]
       # --
       def self.for_ext(ext)
@@ -49,9 +50,7 @@ module Jekyll
       # --
       def self.run_for(out, ext:, var: {})
         find_for(ext).each do |v|
-          out = v.run_for(out, {
-            **var,
-          })
+          out = v.run_for(out, **var)
         end
 
         out
